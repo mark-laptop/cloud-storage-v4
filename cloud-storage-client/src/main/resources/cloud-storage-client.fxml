@@ -1,0 +1,35 @@
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ListView?>
+<VBox fx:controller="ru.ndg.cloud.storage.v4.client.controllers.MainController"
+      xmlns:fx="http://javafx.com/fxml">
+
+    <HBox fx:id="hBoxConnection">
+        <TextField fx:id="hostField" text="localhost" promptText="HOST"/>
+        <TextField fx:id="portField" text="8189" promptText="PORT"/>
+        <Button text="Connection" onAction="#connectionServer"/>
+    </HBox>
+    <HBox fx:id="hBoxAuthentication">
+        <TextField fx:id="loginField" promptText="LOGIN"/>
+        <PasswordField fx:id="passwordField" promptText="PASSWORD"/>
+        <Button text="Authentication" onAction="#authentication"/>
+        <Button text="Registration" onAction="#registration"/>
+    </HBox>
+    <VBox fx:id="vBoxWorker">
+        <HBox>
+        <ListView fx:id="listFilesClient"/>
+        <ListView fx:id="listFilesServer"/>
+        </HBox>
+        <HBox>
+            <Button text="Upload file" onAction="#uploadFile"/>
+            <Button text="Download file" onAction="#downloadFile"/>
+            <Button text="Delete file" onAction="#deleteFile"/>
+            <Button text="Rename file" onAction="#renameFile"/>
+            <Button text="refresh files" onAction="#refreshFiles"/>
+        </HBox>
+    </VBox>
+</VBox>
