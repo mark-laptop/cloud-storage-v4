@@ -14,6 +14,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 import lombok.Builder;
 import lombok.extern.log4j.Log4j2;
 import ru.ndg.cloud.storage.v4.client.handlers.ClientMainHandler;
+import ru.ndg.cloud.storage.v4.common.db.DBUtils;
 import ru.ndg.cloud.storage.v4.common.services.AuthenticationClientService;
 import ru.ndg.cloud.storage.v4.common.CallBack;
 import ru.ndg.cloud.storage.v4.common.services.FileClientService;
@@ -46,7 +47,7 @@ public class Network {
                             Network.this.currentChannel = ch;
                             ch.pipeline().addLast(
                                     new ObjectEncoder(),
-                                    new ObjectDecoder(500 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                                    new ObjectDecoder(1000 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
                                     new ClientMainHandler(Network.this.callBack)
                             );
                         }

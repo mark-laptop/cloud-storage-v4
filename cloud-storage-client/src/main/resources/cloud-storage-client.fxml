@@ -29,7 +29,7 @@
             <Button text="Download file" onAction="#downloadFile"/>
             <Button text="Delete file" onAction="#deleteFile"/>
             <Button text="Rename file" onAction="#renameFile"/>
-            <Button text="refresh files" onAction="#refreshFiles"/>
+            <Button text="Refresh files" onAction="#refreshFiles"/>
         </HBox>
     </VBox>
 </VBox>

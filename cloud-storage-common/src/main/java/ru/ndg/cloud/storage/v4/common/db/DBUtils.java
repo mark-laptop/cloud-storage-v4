@@ -63,7 +63,6 @@ public class DBUtils {
 
     public static boolean saveUser(User user) {
         PreparedStatement statement = null;
-        User userFromDB = new User();
         try {
             statement = DBUtils.getConnection().prepareStatement(SAVE_USER_SQL);
             statement.setString(1, user.getLogin());
@@ -83,33 +82,7 @@ public class DBUtils {
         return false;
     }
 
-    public static boolean userIfExist(User user) {
-        PreparedStatement statement = null;
-        User userFromDB = new User();
-        try {
-            statement = DBUtils.getConnection().prepareStatement(USER_IF_EXIST);
-            statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                userFromDB.setLogin(resultSet.getString("login"));
-                userFromDB.setPassword(resultSet.getString("password"));
-            }
-            return true;
-        } catch (SQLException e) {
-            log.debug(e);
-        } finally {
-            try {
-                if (statement != null)
-                    statement.close();
-            } catch (SQLException e) {
-                log.debug(e);
-            }
-        }
-        return false;
-    }
-
-    public void close() {
+    public static void close() {
         try {
             if (connection != null)
                 connection.close();
