@@ -13,7 +13,6 @@ public class DBUtils {
     private static final String URL = "jdbc:sqlite:D:/java_project/cloud-storage-v4/cloud_storage.db";
     private static final String GET_USER_SQL = "SELECT users.login AS login, users.password AS PASSWORD FROM users WHERE users.login=? AND users.password=?";
     private static final String SAVE_USER_SQL = "INSERT INTO users (login, password) VALUES (?, ?)";
-    private static final String USER_IF_EXIST = "SELECT users.login AS login FROM users WHERE users.login=? AND users.password=?";
 
     private DBUtils() {
     }
