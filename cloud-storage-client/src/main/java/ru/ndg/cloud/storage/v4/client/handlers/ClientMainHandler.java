@@ -20,31 +20,31 @@ public class ClientMainHandler extends ChannelInboundHandlerAdapter {
         if (!(msg instanceof Message)) return;
 
         if (msg instanceof AuthenticationResponse) {
-            callBack.authenticationCallback(((AuthenticationResponse) msg).isResult());
+            this.callBack.authenticationCallback(((AuthenticationResponse) msg).isResult());
             return;
         }
         if (msg instanceof RegistrationResponse) {
-            callBack.registrationCallback(((RegistrationResponse) msg).isResult());
+            this.callBack.registrationCallback(((RegistrationResponse) msg).isResult());
             return;
         }
         if (msg instanceof FileListResponse) {
-            callBack.fileListCallback(((FileListResponse) msg).getFileList());
+            this.callBack.fileListCallback(((FileListResponse) msg).getFileList());
             return;
         }
         if (msg instanceof UploadResponse) {
-            callBack.fileUploadCallback(((UploadResponse) msg).getFileList());
+            this.callBack.fileUploadCallback(((UploadResponse) msg).getFileList());
             return;
         }
         if (msg instanceof DownloadResponse) {
-            callBack.fileDownloadCallback(((DownloadResponse) msg).getFileName(), ((DownloadResponse) msg).getData());
+            this.callBack.fileDownloadCallback(((DownloadResponse) msg).getFileName(), ((DownloadResponse) msg).getData());
             return;
         }
         if (msg instanceof DeleteResponse) {
-            callBack.fileDeleteCallback(((DeleteResponse) msg).getFileList());
+            this.callBack.fileDeleteCallback(((DeleteResponse) msg).getFileList());
             return;
         }
         if (msg instanceof RenameResponse) {
-            callBack.fileRenameCallback(((RenameResponse) msg).getFileList());
+            this.callBack.fileRenameCallback(((RenameResponse) msg).getFileList());
         }
     }
 
