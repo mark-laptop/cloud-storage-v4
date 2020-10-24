@@ -11,6 +11,7 @@ import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 import lombok.extern.log4j.Log4j2;
+import ru.ndg.cloud.storage.v4.common.db.DBUtils;
 import ru.ndg.cloud.storage.v4.server.handlers.ServerMainHandler;
 
 @Log4j2
@@ -31,7 +32,7 @@ public class Network {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(
-                                    new ObjectDecoder(500 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                                    new ObjectDecoder(1000 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
                                     new ServerMainHandler()
                             );
@@ -44,6 +45,7 @@ public class Network {
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
+            DBUtils.close();
         }
     }
 }

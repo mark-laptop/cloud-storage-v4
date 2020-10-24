@@ -52,6 +52,8 @@ public class MainController implements Initializable, CallBack {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        listFilesClient.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        listFilesServer.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         refreshScene();
     }
 
@@ -269,9 +271,7 @@ public class MainController implements Initializable, CallBack {
 
     @Override
     public void fileDeleteCallback(String fileList) {
-        if (fileList != null && !fileList.isEmpty()) {
             refreshListFilesServer(fileList);
-        }
     }
 
     @Override
