@@ -1,5 +1,6 @@
 package ru.ndg.cloud.storage.v4.client.handlers;
 
+import com.sun.istack.internal.NotNull;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.log4j.Log4j2;
@@ -11,7 +12,7 @@ public class ClientMainHandler extends ChannelInboundHandlerAdapter {
 
     private CallBack callBack;
 
-    public ClientMainHandler(CallBack callBack) {
+    public ClientMainHandler(@NotNull CallBack callBack) {
         this.callBack = callBack;
     }
 
@@ -20,31 +21,31 @@ public class ClientMainHandler extends ChannelInboundHandlerAdapter {
         if (!(msg instanceof Message)) return;
 
         if (msg instanceof AuthenticationResponse) {
-            callBack.authenticationCallback(((AuthenticationResponse) msg).isResult());
+            this.callBack.authenticationCallback(((AuthenticationResponse) msg).isResult());
             return;
         }
         if (msg instanceof RegistrationResponse) {
-            callBack.registrationCallback(((RegistrationResponse) msg).isResult());
+            this.callBack.registrationCallback(((RegistrationResponse) msg).isResult());
             return;
         }
         if (msg instanceof FileListResponse) {
-            callBack.fileListCallback(((FileListResponse) msg).getFileList());
+            this.callBack.fileListCallback(((FileListResponse) msg).getFileList());
             return;
         }
         if (msg instanceof UploadResponse) {
-            callBack.fileUploadCallback(((UploadResponse) msg).getFileList());
+            this.callBack.fileUploadCallback(((UploadResponse) msg).getFileList());
             return;
         }
         if (msg instanceof DownloadResponse) {
-            callBack.fileDownloadCallback(((DownloadResponse) msg).getFileName(), ((DownloadResponse) msg).getData());
+            this.callBack.fileDownloadCallback(((DownloadResponse) msg).getFileName(), ((DownloadResponse) msg).getData());
             return;
         }
         if (msg instanceof DeleteResponse) {
-            callBack.fileDeleteCallback(((DeleteResponse) msg).getFileList());
+            this.callBack.fileDeleteCallback(((DeleteResponse) msg).getFileList());
             return;
         }
         if (msg instanceof RenameResponse) {
-            callBack.fileRenameCallback(((RenameResponse) msg).getFileList());
+            this.callBack.fileRenameCallback(((RenameResponse) msg).getFileList());
         }
     }
 

@@ -1,5 +1,6 @@
 package ru.ndg.cloud.storage.v4.common.services;
 
+import com.sun.istack.internal.NotNull;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
 import ru.ndg.cloud.storage.v4.common.model.*;
@@ -17,30 +18,30 @@ public class FileServerService {
         createServerDirectory();
     }
 
-    public void receiveUploadFile(ChannelHandlerContext ctx, UploadRequest request) {
+    public void receiveUploadFile(@NotNull ChannelHandlerContext ctx, @NotNull UploadRequest request) {
         writeFile(request.getLogin(), request.getFileName(), request.getData());
         String fileList = getListFiles(request.getLogin());
         ctx.writeAndFlush(new UploadResponse(fileList));
     }
 
-    public void receiveDownloadFile(ChannelHandlerContext ctx, DownloadRequest request) {
+    public void receiveDownloadFile(@NotNull ChannelHandlerContext ctx, @NotNull DownloadRequest request) {
         byte[] data = readFile(request.getLogin(), request.getFileName());
         ctx.writeAndFlush(new DownloadResponse(request.getFileName(), data));
     }
 
-    public void receiveDeleteFile(ChannelHandlerContext ctx, DeleteRequest request) {
+    public void receiveDeleteFile(@NotNull ChannelHandlerContext ctx, @NotNull DeleteRequest request) {
         deleteFile(request.getLogin(), request.getFileName());
         String fileList = getListFiles(request.getLogin());
         ctx.writeAndFlush(new DeleteResponse(fileList));
     }
 
-    public void receiveRenameFile(ChannelHandlerContext ctx, RenameRequest request) {
+    public void receiveRenameFile(@NotNull ChannelHandlerContext ctx, @NotNull RenameRequest request) {
         renameFile(request.getLogin(), request.getFileName(), request.getNewFileName());
         String fileList = getListFiles(request.getLogin());
         ctx.writeAndFlush(new RenameResponse(fileList));
     }
 
-    public void receiveGetListFiles(ChannelHandlerContext ctx, FileListRequest request) {
+    public void receiveGetListFiles(@NotNull ChannelHandlerContext ctx, @NotNull FileListRequest request) {
         String fileList = getListFiles(request.getLogin());
         ctx.writeAndFlush(new FileListResponse(fileList));
     }
