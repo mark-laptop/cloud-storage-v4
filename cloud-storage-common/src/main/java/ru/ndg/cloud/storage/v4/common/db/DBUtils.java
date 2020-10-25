@@ -15,7 +15,7 @@ import java.sql.*;
 public class DBUtils {
     private static Connection connection;
     private static final String DRIVER_CLASS = "org.sqlite.JDBC";
-    private static final String URL = "jdbc:sqlite:D:/java_project/cloud-storage-v4/cloud_storage.db";
+    private static final String URL = "jdbc:sqlite:cloud_storage.db";
     private static final String GET_USER_SQL = "SELECT users.login AS login, users.password AS PASSWORD FROM users WHERE users.login=? AND users.password=?";
     private static final String SAVE_USER_SQL = "INSERT INTO users (login, password) VALUES (?, ?)";
 
