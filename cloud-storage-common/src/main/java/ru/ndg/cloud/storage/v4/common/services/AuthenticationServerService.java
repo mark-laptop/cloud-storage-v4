@@ -1,5 +1,6 @@
 package ru.ndg.cloud.storage.v4.common.services;
 
+import com.sun.istack.internal.NotNull;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
 import ru.ndg.cloud.storage.v4.common.model.*;
@@ -13,7 +14,7 @@ import java.nio.file.Paths;
 @Log4j2
 public class AuthenticationServerService {
 
-    public void receiveAuthentication(ChannelHandlerContext ctx, AuthenticationRequest request) {
+    public void receiveAuthentication(@NotNull ChannelHandlerContext ctx, @NotNull AuthenticationRequest request) {
         User userFromDB = DBUtils.getUser(new User(request.getLogin(), request.getPassword()));
         boolean result = userFromDB.getLogin() != null;
             if (result) {
@@ -24,7 +25,7 @@ public class AuthenticationServerService {
                 ctx.writeAndFlush(new AuthenticationResponse(false));
     }
 
-    public void receiveRegistration(ChannelHandlerContext ctx, RegistrationRequest request) {
+    public void receiveRegistration(@NotNull ChannelHandlerContext ctx, @NotNull RegistrationRequest request) {
         boolean result = DBUtils.saveUser(new User(request.getLogin(), request.getPassword()));
         if (result) {
             createUserDirectory(request.getLogin());

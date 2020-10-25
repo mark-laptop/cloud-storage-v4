@@ -1,5 +1,7 @@
 package ru.ndg.cloud.storage.v4.client.controllers;
 
+import com.sun.istack.internal.NotNull;
+import com.sun.istack.internal.Nullable;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -187,7 +189,7 @@ public class MainController implements Initializable, CallBack {
         });
     }
 
-    private void refreshListFilesServer(String fileList) {
+    private void refreshListFilesServer(final String fileList) {
         Platform.runLater(() -> {
             this.listFilesServer.getItems().clear();
             this.listFilesServer.getItems().addAll(fileList.split(","));
@@ -244,22 +246,22 @@ public class MainController implements Initializable, CallBack {
     }
 
     @Override
-    public void fileListCallback(String fileList) {
+    public void fileListCallback(@Nullable String fileList) {
         if (fileList != null && !fileList.isEmpty()) {
             refreshListFilesServer(fileList);
         }
     }
 
     @Override
-    public void fileUploadCallback(String fileList) {
+    public void fileUploadCallback(@Nullable String fileList) {
         if (fileList != null && !fileList.isEmpty()) {
             refreshListFilesServer(fileList);
         }
     }
 
     @Override
-    public void fileDownloadCallback(String fileName, byte[] data) {
-        if (data == null) return;
+    public void fileDownloadCallback(@Nullable String fileName, @Nullable byte[] data) {
+        if (data == null || fileName == null) return;
         Path path = Paths.get(FileClientService.CLIENT_STORAGE_DIRECTORY, fileName);
         try {
             Files.write(path, data, StandardOpenOption.CREATE);
@@ -270,12 +272,12 @@ public class MainController implements Initializable, CallBack {
     }
 
     @Override
-    public void fileDeleteCallback(String fileList) {
+    public void fileDeleteCallback(@NotNull String fileList) {
             refreshListFilesServer(fileList);
     }
 
     @Override
-    public void fileRenameCallback(String fileList) {
+    public void fileRenameCallback(@Nullable String fileList) {
         if (fileList != null && !fileList.isEmpty()) {
             refreshListFilesServer(fileList);
         }

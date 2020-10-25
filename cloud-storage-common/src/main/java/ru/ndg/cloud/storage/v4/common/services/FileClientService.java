@@ -1,5 +1,6 @@
 package ru.ndg.cloud.storage.v4.common.services;
 
+import com.sun.istack.internal.NotNull;
 import io.netty.channel.Channel;
 import lombok.extern.log4j.Log4j2;
 import ru.ndg.cloud.storage.v4.common.model.*;
@@ -18,7 +19,7 @@ public class FileClientService {
         createUserDirectory();
     }
 
-    public void sendUploadFile(Channel channel, String login, String fileName) {
+    public void sendUploadFile(@NotNull Channel channel, @NotNull String login, @NotNull String fileName) {
         Path path = Paths.get(CLIENT_STORAGE_DIRECTORY, fileName);
         byte[] bytes = null;
         if (Files.exists(path)) {
@@ -32,19 +33,19 @@ public class FileClientService {
         channel.writeAndFlush(new UploadRequest(login, fileName, bytes));
     }
 
-    public void sendDownloadFile(Channel channel, String login, String fileName) {
+    public void sendDownloadFile(@NotNull Channel channel, @NotNull String login, @NotNull String fileName) {
         channel.writeAndFlush(new DownloadRequest(login, fileName));
     }
 
-    public void sendDeleteFile(Channel channel, String login, String fileName) {
+    public void sendDeleteFile(@NotNull Channel channel, @NotNull String login, @NotNull String fileName) {
         channel.writeAndFlush(new DeleteRequest(login, fileName));
     }
 
-    public void sendRenameFile(Channel channel, String login, String fileName, String newFileName) {
+    public void sendRenameFile(@NotNull Channel channel, @NotNull String login, @NotNull String fileName, @NotNull String newFileName) {
         channel.writeAndFlush(new RenameRequest(login, fileName, newFileName));
     }
 
-    public void sendGetListFiles(Channel channel, String login) {
+    public void sendGetListFiles(@NotNull Channel channel, @NotNull String login) {
         channel.writeAndFlush(new FileListRequest(login));
     }
 

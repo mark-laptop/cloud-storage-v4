@@ -1,5 +1,6 @@
 package ru.ndg.cloud.storage.v4.client.handlers;
 
+import com.sun.istack.internal.NotNull;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.log4j.Log4j2;
@@ -11,7 +12,7 @@ public class ClientMainHandler extends ChannelInboundHandlerAdapter {
 
     private CallBack callBack;
 
-    public ClientMainHandler(CallBack callBack) {
+    public ClientMainHandler(@NotNull CallBack callBack) {
         this.callBack = callBack;
     }
 
