@@ -1,11 +1,11 @@
-package ru.ndg.cloud.storage.v4.common.model;
+package ru.ndg.cloud.storage.v4.common.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class FileListResponse implements Message {
+public class RenameResponse implements Message {
 
     private String fileList;
 }

@@ -2,7 +2,7 @@ package ru.ndg.cloud.storage.v4.common.services;
 
 import com.sun.istack.internal.NotNull;
 import io.netty.channel.Channel;
-import ru.ndg.cloud.storage.v4.common.model.*;
+import ru.ndg.cloud.storage.v4.common.models.*;
 
 public class AuthenticationClientService {
     public void sendAuthentication(@NotNull Channel channel, @NotNull String login, @NotNull String password) {

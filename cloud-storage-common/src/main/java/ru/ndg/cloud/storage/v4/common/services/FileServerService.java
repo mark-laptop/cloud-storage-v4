@@ -3,7 +3,7 @@ package ru.ndg.cloud.storage.v4.common.services;
 import com.sun.istack.internal.NotNull;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
-import ru.ndg.cloud.storage.v4.common.model.*;
+import ru.ndg.cloud.storage.v4.common.models.*;
 
 import java.io.IOException;
 import java.nio.file.*;

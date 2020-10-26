@@ -4,7 +4,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.log4j.Log4j2;
 import ru.ndg.cloud.storage.v4.common.db.DBUtils;
-import ru.ndg.cloud.storage.v4.common.model.*;
+import ru.ndg.cloud.storage.v4.common.models.*;
 import ru.ndg.cloud.storage.v4.common.services.AuthenticationServerService;
 import ru.ndg.cloud.storage.v4.common.services.FileServerService;
 

@@ -3,7 +3,7 @@ package ru.ndg.cloud.storage.v4.common.services;
 import com.sun.istack.internal.NotNull;
 import io.netty.channel.Channel;
 import lombok.extern.log4j.Log4j2;
-import ru.ndg.cloud.storage.v4.common.model.*;
+import ru.ndg.cloud.storage.v4.common.models.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,16 +21,16 @@ public class FileClientService {
 
     public void sendUploadFile(@NotNull Channel channel, @NotNull String login, @NotNull String fileName) {
         Path path = Paths.get(CLIENT_STORAGE_DIRECTORY, fileName);
-        byte[] bytes = null;
+        byte[] data = null;
         if (Files.exists(path)) {
             try {
-                bytes = Files.readAllBytes(path);
+                data = Files.readAllBytes(path);
             } catch (IOException e) {
                 log.debug(e);
-                bytes = new byte[0];
+                data = new byte[0];
             }
         }
-        channel.writeAndFlush(new UploadRequest(login, fileName, bytes));
+        channel.writeAndFlush(new UploadRequest(login, fileName, data));
     }
 
     public void sendDownloadFile(@NotNull Channel channel, @NotNull String login, @NotNull String fileName) {
