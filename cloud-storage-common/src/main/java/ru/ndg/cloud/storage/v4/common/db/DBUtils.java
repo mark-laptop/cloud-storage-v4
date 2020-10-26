@@ -2,7 +2,7 @@ package ru.ndg.cloud.storage.v4.common.db;
 
 import com.sun.istack.internal.Nullable;
 import lombok.extern.log4j.Log4j2;
-import ru.ndg.cloud.storage.v4.common.model.User;
+import ru.ndg.cloud.storage.v4.common.models.User;
 
 import java.sql.*;
 

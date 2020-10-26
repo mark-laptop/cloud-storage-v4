@@ -63,7 +63,7 @@ public class MainController implements Initializable, CallBack {
         String host = this.hostField.getText();
         String port = this.portField.getText();
         if (isHostPortCorrect(host, port)) {
-            CountDownLatch latch = new CountDownLatch(1);
+            final CountDownLatch latch = new CountDownLatch(1);
             Thread t = new Thread(() -> {
                 this.network = Network.builder()
                         .host(host)

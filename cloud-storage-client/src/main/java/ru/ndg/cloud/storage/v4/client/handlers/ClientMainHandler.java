@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.log4j.Log4j2;
 import ru.ndg.cloud.storage.v4.common.CallBack;
-import ru.ndg.cloud.storage.v4.common.model.*;
+import ru.ndg.cloud.storage.v4.common.models.*;
 
 @Log4j2
 public class ClientMainHandler extends ChannelInboundHandlerAdapter {
